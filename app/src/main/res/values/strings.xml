@@ -22,11 +22,11 @@
     <string name="error_mode">Zaznacz tryb zajec</string>
     <string name="confirm_title">Wyslac zgloszenie?</string>
     <string name="confirm_message">Sprawdz dane przed wyslaniem.</string>
-    <string name="yes">Tak, wyslij</string>
-    <string name="no">Popraw</string>
+
+
     <string name="sent">Zgloszenie wyslane</string>
     <string name="undo">Cofnij</string>
-    <string name="summary_format">%1$s\n%2$s\nUr. %3$s\nKurs: %4$s\nTryb: %5$s\nPoziom: %6$d/10\nNewsletter: %7$s</string>
+
     <string name="yes_short">tak</string>
     <string name="no_short">nie</string>
     <string-array name="courses">
@@ -74,4 +74,20 @@
     <string name="survey_clear_confirm">Wyczysc</string>
     <string name="survey_clear_cancel">Anuluj</string>
     <string name="survey_cleared">Formularz zostal wyczyszczony</string>
+
+    <string name="summary_header">Podsumowanie ankiety</string>
+    <string name="btn_confirm">POTWIERDŹ</string>
+    <string name="btn_edit">POPRAW</string>
+    <string name="btn_share">UDOSTĘPNIJ</string>
+
+    <string name="yes">Tak</string>
+    <string name="no">Nie</string>
+
+    <string name="summary_format">Produkt: %1$s\n\nOceny:\nPytanie 1: %2$d/10\nPytanie 2: %3$d/10\nPytanie 3: %4$d/10\nPytanie 4: %5$d/10\nPytanie 5: %6$d/10\n\nKomentarz: %7$s\n\nCzy polecasz produkt? %8$s\nZgoda na publikację: %9$s</string>
+
+    <string name="share_via">Udostępnij ankietę</string>
+    <string name="no_share_app">Brak aplikacji do udostępniania</string>
+
+    <string name="survey_confirmed">Ankieta potwierdzona! Numer: %1$s</string>
+    <string name="survey_cancelled">Zrezygnowano z potwierdzenia ankiety.</string>
 </resources>

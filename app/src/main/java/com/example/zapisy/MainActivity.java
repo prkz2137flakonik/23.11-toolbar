@@ -21,6 +21,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.materialswitch.MaterialSwitch;
 
+import android.content.Intent;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
+
 public class MainActivity extends AppCompatActivity {
 
     private Spinner spProduct;
@@ -32,10 +36,35 @@ public class MainActivity extends AppCompatActivity {
     private Button btnSendSurvey;
     private Button btnClearSurvey;
 
+    private ActivityResultLauncher<Intent> summaryLauncher;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_survey);
+
+        summaryLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == RESULT_OK && result.getData() != null) {
+                        String number = result.getData().getStringExtra(
+                                SummaryActivity.EXTRA_RESULT_NUMBER
+                        );
+
+                        Toast.makeText(
+                                this,
+                                getString(R.string.survey_confirmed, number),
+                                Toast.LENGTH_LONG
+                        ).show();
+                    } else {
+                        Toast.makeText(
+                                this,
+                                R.string.survey_cancelled,
+                                Toast.LENGTH_SHORT
+                        ).show();
+                    }
+                }
+        );
 
         spProduct = findViewById(R.id.spProduct);
         sbQ1 = findViewById(R.id.sbQ1);
@@ -93,26 +122,33 @@ public class MainActivity extends AppCompatActivity {
 
         btnSendSurvey.setOnClickListener(v -> {
             if (validateSurvey()) {
-                new AlertDialog.Builder(this)
-                        .setTitle(R.string.survey_confirm_title)
-                        .setMessage(R.string.survey_confirm_message)
-                        .setNegativeButton(R.string.survey_confirm_cancel, (dialog, which) -> dialog.dismiss())
-                        .setPositiveButton(R.string.survey_confirm_send, (dialog, which) -> {
-                            String previousSummary = tvSurveySummary.getText().toString();
-
-                            tvSurveySummary.setText(buildSurveySummary());
-
-                            Snackbar.make(
-                                    tvSurveySummary,
-                                    R.string.survey_sent,
-                                    Snackbar.LENGTH_LONG
-                            ).setAction(R.string.survey_undo, undoView -> {
-                                tvSurveySummary.setText(previousSummary);
-                            }).show();
-                        })
-                        .show();
+                openSummary();
             }
         });
+    }
+
+    private void openSummary() {
+        Intent intent = new Intent(MainActivity.this, SummaryActivity.class);
+
+        intent.putExtra(SummaryActivity.EXTRA_PRODUCT,
+                spProduct.getSelectedItem().toString());
+
+        intent.putExtra(SummaryActivity.EXTRA_Q1, sbQ1.getProgress());
+        intent.putExtra(SummaryActivity.EXTRA_Q2, sbQ2.getProgress());
+        intent.putExtra(SummaryActivity.EXTRA_Q3, sbQ3.getProgress());
+        intent.putExtra(SummaryActivity.EXTRA_Q4, sbQ4.getProgress());
+        intent.putExtra(SummaryActivity.EXTRA_Q5, sbQ5.getProgress());
+
+        intent.putExtra(SummaryActivity.EXTRA_COMMENT,
+                etComment.getText().toString().trim());
+
+        intent.putExtra(SummaryActivity.EXTRA_RECOMMEND,
+                swRecommend.isChecked());
+
+        intent.putExtra(SummaryActivity.EXTRA_PUBLISH,
+                cbPublish.isChecked());
+
+        summaryLauncher.launch(intent);
     }
 
     private void bindSeekBar(SeekBar seekBar, TextView label) {
