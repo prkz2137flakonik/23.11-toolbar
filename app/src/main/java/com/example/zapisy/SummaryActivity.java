@@ -7,6 +7,8 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import android.util.Log;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class SummaryActivity extends AppCompatActivity {
@@ -22,6 +24,7 @@ public class SummaryActivity extends AppCompatActivity {
     public static final String EXTRA_RECOMMEND = "EXTRA_RECOMMEND";
     public static final String EXTRA_PUBLISH = "EXTRA_PUBLISH";
     public static final String EXTRA_RESULT_NUMBER = "EXTRA_RESULT_NUMBER";
+    private static final String TAG = "ActivityLifecycle";
 
     private TextView tvSummary;
     private Button btnConfirm, btnEdit, btnShare;
@@ -29,6 +32,7 @@ public class SummaryActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "SummaryActivity - onCreate");
         setContentView(R.layout.activity_summary);
 
         tvSummary = findViewById(R.id.tvSummary);
@@ -114,5 +118,16 @@ public class SummaryActivity extends AppCompatActivity {
                     Toast.LENGTH_SHORT
             ).show();
         }
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG, "SummaryActivity - onStop");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "SummaryActivity - onDestroy");
     }
 }

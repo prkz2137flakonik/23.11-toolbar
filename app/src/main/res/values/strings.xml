@@ -90,4 +90,9 @@
 
     <string name="survey_confirmed">Ankieta potwierdzona! Numer: %1$s</string>
     <string name="survey_cancelled">Zrezygnowano z potwierdzenia ankiety.</string>
+
+    <string name="about_header">O aplikacji</string>
+    <string name="about_description">Aplikacja służy do przeprowadzania ankiety satysfakcji. Umożliwia ocenę produktu, dodanie komentarza oraz przekazanie odpowiedzi do podsumowania.</string>
+    <string name="about_back">WRÓĆ</string>
+    <string name="btn_about">O APLIKACJI</string>
 </resources>

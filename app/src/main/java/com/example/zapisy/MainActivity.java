@@ -25,6 +25,8 @@ import android.content.Intent;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 
+import android.util.Log;
+
 public class MainActivity extends AppCompatActivity {
 
     private Spinner spProduct;
@@ -36,11 +38,14 @@ public class MainActivity extends AppCompatActivity {
     private Button btnSendSurvey;
     private Button btnClearSurvey;
 
+    private static final String TAG = "ActivityLifecycle";
+
     private ActivityResultLauncher<Intent> summaryLauncher;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.d(TAG, "MainActivity - onCreate");
         setContentView(R.layout.activity_survey);
 
         summaryLauncher = registerForActivityResult(
@@ -87,6 +92,11 @@ public class MainActivity extends AppCompatActivity {
         setUpProductSpinner();
         setUpListeners();
         setUpClearButton();
+
+        findViewById(R.id.btnAbout).setOnClickListener(v -> {
+            Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+            startActivity(intent);
+        });
     }
     private void setUpClearButton() {
         btnClearSurvey.setOnClickListener(v -> showClearConfirmation());
@@ -275,5 +285,17 @@ public class MainActivity extends AppCompatActivity {
 
         btnSendSurvey.setEnabled(state.sendEnabled);
         tvSurveySummary.setText(state.summary);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.d(TAG, "MainActivity - onStop");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "MainActivity - onDestroy");
     }
 }

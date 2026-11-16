@@ -107,6 +107,12 @@
             android:layout_marginTop="16dp"
             android:enabled="false"
             android:text="@string/btn_send_survey" />
+
+        <Button
+            android:id="@+id/btnAbout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_about" />
         <Button
             android:id="@+id/btnClearSurvey"
             android:layout_width="match_parent"
