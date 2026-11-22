@@ -95,4 +95,6 @@
     <string name="about_description">Aplikacja służy do przeprowadzania ankiety satysfakcji. Umożliwia ocenę produktu, dodanie komentarza oraz przekazanie odpowiedzi do podsumowania.</string>
     <string name="about_back">WRÓĆ</string>
     <string name="btn_about">O APLIKACJI</string>
+    <string name="toolbar_survey_title">Ankieta</string>
+    <string name="toolbar_summary_title">Opinia: %1$s</string>
 </resources>

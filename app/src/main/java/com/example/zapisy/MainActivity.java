@@ -47,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "MainActivity - onCreate");
         setContentView(R.layout.activity_survey);
+        androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        toolbar.setTitle("Ankieta");
 
         summaryLauncher = registerForActivityResult(
                 new ActivityResultContracts.StartActivityForResult(),

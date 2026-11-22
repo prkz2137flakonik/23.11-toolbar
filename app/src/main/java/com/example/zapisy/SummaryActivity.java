@@ -34,6 +34,10 @@ public class SummaryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Log.d(TAG, "SummaryActivity - onCreate");
         setContentView(R.layout.activity_summary);
+        androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Podsumowanie");
+        toolbar.setNavigationIcon(androidx.appcompat.R.drawable.abc_ic_ab_back_material);
+        toolbar.setNavigationOnClickListener(v -> finish());
 
         tvSummary = findViewById(R.id.tvSummary);
         btnConfirm = findViewById(R.id.btnConfirm);
@@ -56,6 +60,7 @@ public class SummaryActivity extends AppCompatActivity {
         if (product == null) {
             product = "-";
         }
+
 
         int q1 = intent.getIntExtra(EXTRA_Q1, 0);
         int q2 = intent.getIntExtra(EXTRA_Q2, 0);
@@ -86,6 +91,9 @@ public class SummaryActivity extends AppCompatActivity {
         );
 
         tvSummary.setText(summary);
+
+        androidx.appcompat.widget.Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Opinia: " + product);
     }
 
     private void confirmSurvey() {
@@ -130,4 +138,6 @@ public class SummaryActivity extends AppCompatActivity {
         super.onDestroy();
         Log.d(TAG, "SummaryActivity - onDestroy");
     }
+
+
 }
