@@ -301,4 +301,49 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
         Log.d(TAG, "MainActivity - onDestroy");
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(android.view.MenuItem item) {
+
+        @Override
+        public boolean onOptionsItemSelected(android.view.MenuItem item) {
+
+            int id = item.getItemId();
+
+            if (id == R.id.action_about) {
+                Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+                startActivity(intent);
+                return true;
+            }
+
+            if (id == R.id.action_clear) {
+                clearSurvey();
+                return true;
+            }
+
+            if (id == R.id.action_share) {
+                Intent shareIntent = new Intent(Intent.ACTION_SEND);
+                shareIntent.setType("text/plain");
+                shareIntent.putExtra(
+                        Intent.EXTRA_TEXT,
+                        tvSurveySummary.getText().toString()
+                );
+
+                startActivity(Intent.createChooser(
+                        shareIntent,
+                        "Udostępnij ankietę"
+                ));
+
+                return true;
+            }
+
+            return super.onOptionsItemSelected(item);
+        }
+    }
 }
